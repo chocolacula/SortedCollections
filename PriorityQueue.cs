@@ -23,20 +23,9 @@ namespace SortedCollections
     {
         private readonly Heap<PriorityQueueEntry<T>> _heap;
 
-        public int Count
-        {
-            get { return _heap.Count; }
-        }
-
-        public bool IsEmpty
-        {
-            get { return _heap.Count == 0; }
-        }
-        
-        public bool IsDescending
-        {
-            get { return _heap.IsDescending; }
-        }
+        public int Count => _heap.Count;
+        public bool IsEmpty => _heap.IsEmpty;
+        public bool IsDescending => _heap.IsDescending;
 
         public PriorityQueue(bool isDesc = false)
         {

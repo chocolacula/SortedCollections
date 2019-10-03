@@ -9,17 +9,10 @@ namespace SortedCollections
     {
         private readonly List<T> _data = new List<T>();
 
-        public int Count
-        {
-            get { return _data.Count; }
-        }
+        public int Count => _data.Count;
+        public bool IsEmpty => _data.Count == 0;
 
-        public bool IsEmpty
-        {
-            get { return _data.Count == 0; }
-        }
-
-        public bool IsDescending { get; }
+        public readonly bool IsDescending;
 
         public Heap(bool isDesc = false)
         {
