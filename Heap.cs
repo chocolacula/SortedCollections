@@ -5,10 +5,9 @@ using System.Collections.Generic;
 namespace SortedCollections
 {
     public class Heap<T> : IEnumerable<T>
-        where T : IComparable
+        where T : IComparable<T>
     {
         private readonly List<T> _data = new List<T>();
-        private readonly bool _isDesc;
 
         public int Count
         {
@@ -19,15 +18,12 @@ namespace SortedCollections
         {
             get { return _data.Count == 0; }
         }
-        
-        public bool IsDescending
-        {
-            get { return _isDesc; }
-        }
+
+        public bool IsDescending { get; }
 
         public Heap(bool isDesc = false)
         {
-            _isDesc = isDesc;
+            IsDescending = isDesc;
         }
 
         public void Push(T value)
@@ -49,7 +45,7 @@ namespace SortedCollections
         {
             if (_data.Count == 0)
                 throw new InvalidOperationException("Collection does not have any element");
-            
+
             var result = _data[0];
 
             _data[0] = _data[_data.Count - 1];
@@ -64,7 +60,7 @@ namespace SortedCollections
         {
             if (_data.Count == 0)
                 throw new InvalidOperationException("Collection does not have any element");
-                
+
             return _data[0];
         }
 
@@ -101,8 +97,8 @@ namespace SortedCollections
         }
 
         private int Compare(T lhs, T rhs)
-        {            
-            return !_isDesc ? lhs.CompareTo(rhs) : rhs.CompareTo(lhs);
+        {
+            return !IsDescending ? lhs.CompareTo(rhs) : rhs.CompareTo(lhs);
         }
 
         private void Swap(int i, int j)

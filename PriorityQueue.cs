@@ -2,7 +2,7 @@
 
 namespace SortedCollections
 {
-    public struct PriorityQueueEntry<T> : IComparable
+    public struct PriorityQueueEntry<T> : IComparable<PriorityQueueEntry<T>>
     {
         public readonly T Value;
         private readonly int _priority;
@@ -13,10 +13,8 @@ namespace SortedCollections
             _priority = priority;
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(PriorityQueueEntry<T> entry)
         {
-            var entry = (PriorityQueueEntry<T>)obj;
-
             return _priority.CompareTo(entry._priority);
         }
     }
